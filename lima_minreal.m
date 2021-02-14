@@ -1,8 +1,15 @@
 % Author: Pedro Rodrigues de Lima
 %
-% LIMA_MINREAL  Extended version of minreal()
-%   X: vector of transfer functions
-%   tol: tolerance for zero-pole cancellation
+% LIMA_MINREAL  Extended version of minreal
+%
+%   [X,X_old] = lima_minreal(X,tol)
+%
+%   Inputs:
+%       X: vector of transfer functions
+%       tol: tolerance for zero-pole cancellation
+%   Outputs:
+%       X: simplified model
+%       X_old: original model
 
 function [X,X_old] = lima_minreal(X,tol)
     
@@ -12,7 +19,7 @@ function [X,X_old] = lima_minreal(X,tol)
     Ts = X.Ts;
     [ni, no] = size(X);
     
-    % Loop through all inputs and outputs (for MIMO systems)
+    % Loop through all inputs and outputs
     for i = 1:ni
         for j = 1:no
             % Fetching zeros and poles

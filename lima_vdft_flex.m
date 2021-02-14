@@ -1,13 +1,23 @@
 % Author: Pedro Rodrigues de Lima
 % 
-% LIMA_VDFT_FLEX   Virtual Disturbance Feedback Tuning using the flexible criterion
-%    u,y: input and output data
-%    F: vector of transfer functions (note that Qd(z) = n'F(z))
-%    Qf: fixed part of Qd(z) (note that F(z)=Qf(z)*F_bar(z))
-%    C0: initial controller (that provides p0)
-%    C_bar: controller's class
-%    K: K(z) filter (considering J_VD multiplied by Qd(z))
-%    N: number of iterations
+% LIMA_VDFT_FLEX  Virtual Disturbance Feedback Tuning using the flexible criterion
+%
+%   lima_vdft_flex(y,u,F,Qf,C0,C_bar,K,N)
+%
+%   Inputs:
+%       u,y: input and output data
+%       F: vector of transfer functions (note that Qd(z) = n'F(z))
+%       Qf: fixed part of Qd(z) (note that F(z)=Qf(z)*F_bar(z))
+%       C0: initial controller (that provides p0)
+%       C_bar: controller's class
+%       K: K(z) filter (considering J_VD multiplied by Qd(z))
+%       N: number of iterations
+%
+%   Outputs:
+%       C: resulting controller
+%       p: controller parameter vector
+%       Q: resulting reference model
+%       n: reference model parameter vector
 
 function[C,p,Q,n] = lima_vdft_flex(y,u,F,Qf,C0,C_bar,K,N)
 

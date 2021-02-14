@@ -1,16 +1,24 @@
 % Author: Pedro Rodrigues de Lima
 %
 % LIMA_VRFT_COSTS   Computes VRFT J_y and J_VR cost functions
-%    u,y: input and output data
-%    Td: VRFT's desired closed-loop transfer function
-%    C: VRFT's estimated controller C(z,p)
-%    L: mismatched class VRFT filter
-%    y_hat : estimated output using C(z,p)
-%    yd : desired y(t)
+%
+%   [Jy,Jvr] = lima_vrft_costs(y,u,Td,C,L,y_hat,yd)
+%
+%   Inputs:
+%       u,y: input and output data
+%       Td: VRFT's desired closed-loop transfer function
+%       C: VRFT's estimated controller C(z,p)
+%       L: mismatched class VRFT filter
+%       y_hat: estimated output using C(z,p)
+%       yd: desired y(t)
+%
+%   Outputs:
+%       Jy: Jy cost value
+%       Jvr: Jvr cost value
 
 function [Jy,Jvr] = lima_vrft_costs(y,u,Td,C,L,y_hat,yd)
 
-    z = zpk(0,[],1,Td.Ts);
+    z = zpk('z',Td.Ts);
     
     % Calculating e_bar
     aux = zpk((1-Td)/Td);
