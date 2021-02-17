@@ -1,3 +1,26 @@
+% Author: Pedro Rodrigues de Lima
+%
+% LIMA_VRFT_LPV  Virtual Reference Feedback Tuning for linear
+%       parameter-varying systems using instrumental variable
+%   
+%   C(z) = [ b_0 + b_1 z^-1 + ... + b_(n-1) z^-(n-1) ] / Q(z),
+%        b_i = b_i1 f_1(p(t)) + b_i2 f_2(p(t)) + ... + b_im f_m(p(t))
+%
+%   [theta, Jvr] = lima_vrft_lpv(y1,y2,u,Td,L,Q,n,m,f)
+%
+%   Inputs:
+%       u,y1,y2: input and output data
+%       Td: desired closed-loop transfer function
+%       L: mismatched class VRFT filter
+%       Q: controller's denominator polynomial
+%       n: number of coefficients in C(z)
+%       m: number of 
+%       f: matrix containing functions of the scheduling variable p(t)
+%       
+%   Outputs:
+%       theta: n-by-m parameter vector
+%       Jvr: Jvr cost value
+
 function [theta, Jvr] = lima_vrft_lpv(y1,y2,u,Td,L,Q,n,m,f)
 
     z = zpk('z',Td.Ts);
