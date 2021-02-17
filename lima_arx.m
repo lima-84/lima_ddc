@@ -48,6 +48,6 @@ function [G,theta] = lima_arx(y1,y2,u,nz,np,nk,Ts)
     
     theta = (zeta'*phi)\(zeta'*y1);
 
-    G = (tf(theta(1:nz+1)',[1 theta(nz+2:end)'],Ts));
+    G = zpk(tf(theta(1:nz+1)',[1 theta(nz+2:end)'],Ts));
     G.IODelay = nk;
 end
